@@ -19,6 +19,7 @@ namespace FreeCourse.Services.Catalog.Controllers
             _courseService = courseService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var response = await _courseService.GetAllAsync();
@@ -32,6 +33,7 @@ namespace FreeCourse.Services.Catalog.Controllers
             return CreateActionResultInstance(response);
         }
 
+        [HttpGet]
         [Route("/api/[controller]/GetAllByUserId/{userId}")]
         public async Task<IActionResult> GetAllByUserId(string userId)
         {
@@ -40,14 +42,14 @@ namespace FreeCourse.Services.Catalog.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CourseCreateDto courseCreateDto)
+        public async Task<IActionResult> Create([FromBody] CourseCreateDto courseCreateDto)
         {
             var response = await _courseService.CreateAsync(courseCreateDto);
             return CreateActionResultInstance(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(CourseUpdateDto courseUpdateDto)
+        public async Task<IActionResult> Update([FromBody] CourseUpdateDto courseUpdateDto)
         {
             var response = await _courseService.UpdateAsync(courseUpdateDto);
             return CreateActionResultInstance(response);

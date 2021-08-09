@@ -52,7 +52,7 @@ namespace FreeCourse.Services.Catalog.Services
             var course = await _courseCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
             if (course == null)
             {
-                return Response<CourseDto>.Fail("Category not found!", StatusCodes.Status404NotFound);
+                return Response<CourseDto>.Fail("Course not found!", StatusCodes.Status404NotFound);
             }
 
             course.Category = await _categoryCollection.Find(x => x.Id == course.CategoryId).FirstAsync();
