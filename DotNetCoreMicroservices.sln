@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{F370
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Services.Catalog", "Services\Catalog\FreeCourse.Services.Catalog\FreeCourse.Services.Catalog.csproj", "{FE75BEFB-E5D9-4FCF-A5D7-B639DE547B37}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{BCE03782-F1CC-44D2-857A-790FF5B11E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Shared", "Shared\FreeCourse.Shared\FreeCourse.Shared.csproj", "{E99F1AA8-3327-4A52-8D52-1D26BCAE7974}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,10 @@ Global
 		{FE75BEFB-E5D9-4FCF-A5D7-B639DE547B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE75BEFB-E5D9-4FCF-A5D7-B639DE547B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE75BEFB-E5D9-4FCF-A5D7-B639DE547B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99F1AA8-3327-4A52-8D52-1D26BCAE7974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E99F1AA8-3327-4A52-8D52-1D26BCAE7974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E99F1AA8-3327-4A52-8D52-1D26BCAE7974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E99F1AA8-3327-4A52-8D52-1D26BCAE7974}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,5 +37,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F3707464-DB97-4FB3-8863-67ED4825C0B1} = {A9766BB7-2FDE-449C-89CA-84427A47F652}
 		{FE75BEFB-E5D9-4FCF-A5D7-B639DE547B37} = {F3707464-DB97-4FB3-8863-67ED4825C0B1}
+		{E99F1AA8-3327-4A52-8D52-1D26BCAE7974} = {BCE03782-F1CC-44D2-857A-790FF5B11E1B}
 	EndGlobalSection
 EndGlobal
