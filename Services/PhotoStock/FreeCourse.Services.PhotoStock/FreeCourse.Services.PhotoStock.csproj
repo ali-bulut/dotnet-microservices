@@ -12,8 +12,15 @@
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\photos\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\" />
+    <None Remove="Dtos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
