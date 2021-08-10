@@ -36,5 +36,19 @@ namespace FreeCourse.Services.PhotoStock.Controllers
 
             return CreateActionResultInstance(Response<PhotoDto>.Fail("File is empty!", 400));
         }
+
+        [HttpDelete]
+        public IActionResult DeletePhoto(string photoUrl)
+        {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/photos", photoUrl);
+            if (!System.IO.File.Exists(path))
+            {
+                return CreateActionResultInstance(Response<NoContent>.Fail("File not found!", 404));
+            }
+
+            System.IO.File.Delete(path);
+
+            return CreateActionResultInstance(Response<NoContent>.Success(204));
+        }
     }
 }
