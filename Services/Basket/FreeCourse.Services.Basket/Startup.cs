@@ -42,6 +42,7 @@ namespace FreeCourse.Services.Basket
 
             services.AddHttpContextAccessor();
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+            services.AddScoped<IBasketService, BasketService>();
 
             services.AddControllers();
         }
