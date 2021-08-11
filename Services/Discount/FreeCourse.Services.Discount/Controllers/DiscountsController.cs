@@ -42,13 +42,13 @@ namespace FreeCourse.Services.Discount.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(Models.Discount discount)
+        public async Task<IActionResult> Save([FromBody] Models.Discount discount)
         {
             return CreateActionResultInstance(await _discountService.Save(discount));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Models.Discount discount)
+        public async Task<IActionResult> Update([FromBody] Models.Discount discount)
         {
             return CreateActionResultInstance(await _discountService.Update(discount));
         }
