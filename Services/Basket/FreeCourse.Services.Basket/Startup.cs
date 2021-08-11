@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FreeCourse.Services.Basket.Services;
 using FreeCourse.Services.Basket.Settings;
+using FreeCourse.Shared.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,9 @@ namespace FreeCourse.Services.Basket
 
                 return redis;
             });
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 
             services.AddControllers();
         }
