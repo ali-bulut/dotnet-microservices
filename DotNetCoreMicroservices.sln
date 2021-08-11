@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Services.PhotoSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.IdentityServer", "IdentityServer\FreeCourse.IdentityServer\FreeCourse.IdentityServer.csproj", "{7E99F7E2-573A-4EB6-B686-EA9E63B2F59A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{5B28F738-B8F2-4EE0-9A1C-5467E7822DFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Services.Basket", "Services\Basket\FreeCourse.Services.Basket\FreeCourse.Services.Basket.csproj", "{92CA68B0-5521-45B8-96F1-F0A117AA5EFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{7E99F7E2-573A-4EB6-B686-EA9E63B2F59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E99F7E2-573A-4EB6-B686-EA9E63B2F59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E99F7E2-573A-4EB6-B686-EA9E63B2F59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92CA68B0-5521-45B8-96F1-F0A117AA5EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92CA68B0-5521-45B8-96F1-F0A117AA5EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92CA68B0-5521-45B8-96F1-F0A117AA5EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92CA68B0-5521-45B8-96F1-F0A117AA5EFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +65,7 @@ Global
 		{4F01D8F5-746D-4BE0-8EE6-CA529DD61AC0} = {A9766BB7-2FDE-449C-89CA-84427A47F652}
 		{ECF693B2-0C44-428C-81F3-6CCAB756A3AF} = {4F01D8F5-746D-4BE0-8EE6-CA529DD61AC0}
 		{7E99F7E2-573A-4EB6-B686-EA9E63B2F59A} = {CF15D2CF-8D18-4C96-9041-7082742CF154}
+		{5B28F738-B8F2-4EE0-9A1C-5467E7822DFF} = {A9766BB7-2FDE-449C-89CA-84427A47F652}
+		{92CA68B0-5521-45B8-96F1-F0A117AA5EFC} = {5B28F738-B8F2-4EE0-9A1C-5467E7822DFF}
 	EndGlobalSection
 EndGlobal
