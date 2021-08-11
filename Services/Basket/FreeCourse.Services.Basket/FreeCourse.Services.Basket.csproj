@@ -13,10 +13,12 @@
     <None Remove="Controllers\" />
     <None Remove="StackExchange.Redis" />
     <None Remove="Dtos\" />
+    <None Remove="Settings\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Dtos\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
