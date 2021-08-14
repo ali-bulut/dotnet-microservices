@@ -78,7 +78,7 @@ namespace FreeCourse.Web.Controllers
                 Picture = course.Picture
             };
 
-            return View(CourseUpdateInput);
+            return View(updatedCourse);
         }
     }
 }
