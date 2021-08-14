@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FreeCourse.Shared.Services;
 using FreeCourse.Web.Handlers;
 using FreeCourse.Web.Models;
 using FreeCourse.Web.Services;
@@ -29,6 +30,8 @@ namespace FreeCourse.Web
         {
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
+
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 
             services.AddHttpContextAccessor();
 
