@@ -39,6 +39,8 @@ namespace FreeCourse.Web
 
             services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 
+            services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
+
             services.AddHttpClient<IIdentityService, IdentityService>();
 
             services.AddHttpClient<ICatalogService, CatalogService>(opt =>
