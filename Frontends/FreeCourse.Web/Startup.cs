@@ -33,6 +33,8 @@ namespace FreeCourse.Web
 
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 
+            services.AddAccessTokenManagement();
+
             services.AddHttpContextAccessor();
 
             var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
