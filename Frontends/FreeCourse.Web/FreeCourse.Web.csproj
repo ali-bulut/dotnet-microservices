@@ -16,6 +16,7 @@
     <None Remove="Models\Catalog\" />
     <None Remove="Views\Course\" />
     <None Remove="IdentityModel.AspNetCore" />
+    <None Remove="Models\PhotoStock\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -26,6 +27,7 @@
     <Folder Include="Views\User\" />
     <Folder Include="Models\Catalog\" />
     <Folder Include="Views\Course\" />
+    <Folder Include="Models\PhotoStock\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj">
