@@ -21,6 +21,8 @@
     <None Remove="Models\Basket\" />
     <None Remove="Extensions\" />
     <None Remove="Views\Basket\" />
+    <None Remove="FluentValidation.AspNetCore" />
+    <None Remove="Validator\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -36,6 +38,7 @@
     <Folder Include="Models\Basket\" />
     <Folder Include="Extensions\" />
     <Folder Include="Views\Basket\" />
+    <Folder Include="Validator\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj">
@@ -46,5 +49,6 @@
     <PackageReference Include="IdentityModel" Version="5.1.0" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="6.12.0" />
     <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.0" />
   </ItemGroup>
 </Project>
