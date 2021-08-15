@@ -18,6 +18,7 @@
     <None Remove="IdentityModel.AspNetCore" />
     <None Remove="Models\PhotoStock\" />
     <None Remove="Helpers\" />
+    <None Remove="Models\Basket\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -30,6 +31,7 @@
     <Folder Include="Views\Course\" />
     <Folder Include="Models\PhotoStock\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Models\Basket\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj">
