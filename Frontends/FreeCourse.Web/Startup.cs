@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FreeCourse.Shared.Services;
 using FreeCourse.Web.Handlers;
+using FreeCourse.Web.Helpers;
 using FreeCourse.Web.Models;
 using FreeCourse.Web.Services;
 using FreeCourse.Web.Services.Interfaces;
@@ -30,6 +31,8 @@ namespace FreeCourse.Web
         {
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
+
+            services.AddSingleton<PhotoHelper>();
 
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 
