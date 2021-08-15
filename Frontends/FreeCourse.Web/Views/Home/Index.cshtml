@@ -24,7 +24,7 @@
                     <h5 class="card-title">@item.Name</h5>
                     <p class="card-text">@item.ShortDescription</p>
                     <h4 class="text-primary">$@item.Price</h4>
-                    <a href="#">Detail</a>
+                    <a class="btn btn-success" asp-route-id="@item.Id" asp-controller="Home" asp-action="Detail">Detail</a>
                 </div>
             </div>
         </div>
