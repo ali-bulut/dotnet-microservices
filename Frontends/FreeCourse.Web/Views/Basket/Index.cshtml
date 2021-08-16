@@ -66,6 +66,10 @@
                             <div class="text-danger">@TempData["discountError"]</div>
                         }
                     </form>
+
+                    <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Go to Payment</a>
+                    <a class="btn btn-warning" asp-controller="Home" asp-action="Index">Back to Homepage</a>
+
                 } else
                 {
                     <div class="alert alert-info">Basket is empty</div>
