@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using FreeCourse.Shared.Dtos;
+using FreeCourse.Shared.Services;
+using FreeCourse.Web.Models.FakePayment;
 using FreeCourse.Web.Models.Order;
 using FreeCourse.Web.Services.Interfaces;
 
@@ -8,14 +13,77 @@ namespace FreeCourse.Web.Services
 {
     public class OrderService : IOrderService
     {
-        public Task<OrderCreatedStatusViewModel> CreateOrder(CheckoutInfoInput checkoutInfo)
+        private readonly IFakePaymentService _fakePaymentService;
+        private readonly HttpClient _httpClient;
+        private readonly IBasketService _basketService;
+        private readonly ISharedIdentityService _sharedIdentityService;
+
+        public OrderService(IFakePaymentService fakePaymentService, HttpClient httpClient, IBasketService basketService, ISharedIdentityService sharedIdentityService)
         {
-            throw new NotImplementedException();
+            _fakePaymentService = fakePaymentService;
+            _httpClient = httpClient;
+            _basketService = basketService;
+            _sharedIdentityService = sharedIdentityService;
         }
 
-        public Task<List<OrderViewModel>> GetOrder()
+        public async Task<OrderCreatedStatusViewModel> CreateOrder(CheckoutInfoInput checkoutInfo)
         {
-            throw new NotImplementedException();
+            var basket = await _basketService.Get();
+
+            var payment = new FakePaymentInfoInput
+            {
+                CardName = checkoutInfo.CardName,
+                CardNumber = checkoutInfo.CardNumber,
+                Expiration = checkoutInfo.Expiration,
+                CVV = checkoutInfo.CVV,
+                TotalPrice = basket.TotalPrice
+            };
+
+            var paymentResponse = await _fakePaymentService.ReceivePayment(payment);
+
+            if(!paymentResponse)
+            {
+                return new OrderCreatedStatusViewModel { Error = "Payment could not be received!", IsSuccessful = false };
+            }
+
+            var orderCreateInput = new OrderCreateInput
+            {
+                CustomerId = _sharedIdentityService.GetUserId,
+                Address = new AddressCreateInput
+                {
+                    Province = checkoutInfo.Province,
+                    District = checkoutInfo.District,
+                    Line = checkoutInfo.Line,
+                    Street = checkoutInfo.Street,
+                    ZipCode = checkoutInfo.ZipCode
+                }
+            };
+
+            basket.BasketItems.ForEach(x =>
+            {
+                orderCreateInput.OrderItems.Add(new OrderItemCreateInput
+                {
+                    ProductId = x.CourseId,
+                    Price = x.Price,
+                    ProductName = x.CourseName,
+                    PictureUrl = ""
+                });
+            });
+
+            var response = await _httpClient.PostAsJsonAsync<OrderCreateInput>("orders", orderCreateInput);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return new OrderCreatedStatusViewModel { Error = "Payment could not be received!", IsSuccessful = false };
+            }
+
+            return await response.Content.ReadFromJsonAsync<OrderCreatedStatusViewModel>();
+        }
+
+        public async Task<List<OrderViewModel>> GetOrder()
+        {
+            var response = await _httpClient.GetFromJsonAsync<Response<List<OrderViewModel>>>("orders");
+            return response.Data;
         }
 
         public Task SuspendOrder(CheckoutInfoInput checkoutInfo)
