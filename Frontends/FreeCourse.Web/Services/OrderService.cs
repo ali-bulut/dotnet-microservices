@@ -64,7 +64,7 @@ namespace FreeCourse.Web.Services
                 orderCreateInput.OrderItems.Add(new OrderItemCreateInput
                 {
                     ProductId = x.CourseId,
-                    Price = x.Price,
+                    Price = x.CurrentPrice,
                     ProductName = x.CourseName,
                     PictureUrl = ""
                 });
@@ -77,7 +77,12 @@ namespace FreeCourse.Web.Services
                 return new OrderCreatedStatusViewModel { Error = "Payment could not be received!", IsSuccessful = false };
             }
 
-            return await response.Content.ReadFromJsonAsync<OrderCreatedStatusViewModel>();
+            var orderCreatedViewModel = await response.Content.ReadFromJsonAsync<Response<OrderCreatedStatusViewModel>>();
+            orderCreatedViewModel.Data.IsSuccessful = true;
+
+            await _basketService.Delete();
+
+            return orderCreatedViewModel.Data;
         }
 
         public async Task<List<OrderViewModel>> GetOrder()
