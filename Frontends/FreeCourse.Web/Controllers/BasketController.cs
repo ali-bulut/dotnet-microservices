@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FreeCourse.Web.Models.Basket;
+using FreeCourse.Web.Models.Discount;
 using FreeCourse.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,19 @@ namespace FreeCourse.Web.Controllers
         {
             await _basketService.RemoveBasketItem(courseId);
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> ApplyDiscount(DiscountApplyInput discount)
+        {
+            var status = await _basketService.ApplyDiscount(discount.Code);
+            TempData["discountStatus"] = status;
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> CancelAppliedDiscount()
+        {
+            await _basketService.CancelAppliedDiscount();
             return RedirectToAction(nameof(Index));
         }
     }
