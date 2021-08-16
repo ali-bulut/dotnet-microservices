@@ -21,7 +21,7 @@
                         {
                             <tr>
                                 <td>@item.CourseName</td>
-                                <td>$@item.CurrentPrice</td>
+                                <td>$@item.CurrentPrice @(Model.HasDiscount ? $"({Model.DiscountRate.Value}% discount applied!)" : "") </td>
                                 <td>
                                     <a asp-controller="Basket" asp-action="RemoveBasketItem" asp-route-courseId="@item.CourseId" class="btn btn-danger btn-sm">Remove</a>
                                 </td>
@@ -45,19 +45,26 @@
                     <form asp-controller="Basket" asp-action="ApplyDiscount">
                         @if (Model.HasDiscount)
                         {
-                            <div class="alert alert-success">"@Model.DiscountCode" discount code has been applied!</div>
-                        }
-
-                        @if(TempData["discountStatus"] != null && (bool)TempData["discountStatus"] == false)
-                        {
-                            <div class="text-danger">Discount code is invalid!</div>
+                            <div class="alert alert-success">
+                                "@Model.DiscountCode" discount code has been applied!
+                                <a asp-controller="Basket" asp-action="CancelAppliedDiscount">(Cancel)</a>
+                            </div>
                         }
 
                         <div class="input-group mb-3">
                             <input type="text" name="DiscountApplyInput.Code" class="form-control" />
-                            <div asp-validation-summary="All"></div>
                             <button type="submit" class="btn btn-outline-secondary">Apply</button>
                         </div>
+
+                        @if (TempData["discountStatus"] != null && (bool)TempData["discountStatus"] == false)
+                        {
+                            <div class="text-danger">Discount code is invalid!</div>
+                        }
+
+                        @if (TempData["discountError"] != null)
+                        {
+                            <div class="text-danger">@TempData["discountError"]</div>
+                        }
                     </form>
                 } else
                 {

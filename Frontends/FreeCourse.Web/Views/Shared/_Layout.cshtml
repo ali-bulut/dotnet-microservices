@@ -25,6 +25,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Profile</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Basket" asp-action="Index">Basket</a>
                         <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Sign Out</a>
                     }
                     else
