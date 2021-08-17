@@ -5,6 +5,11 @@ namespace FreeCourse.Shared.Messages
 {
     public class CreateOrderMessageCommand
     {
+        public CreateOrderMessageCommand()
+        {
+            OrderItems = new List<OrderItem>();
+        }
+
         public string CustomerId { get; set; }
         public List<OrderItem> OrderItems { get; set; }
 
