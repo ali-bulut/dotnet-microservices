@@ -91,9 +91,54 @@ namespace FreeCourse.Web.Services
             return response.Data;
         }
 
-        public Task SuspendOrder(CheckoutInfoInput checkoutInfo)
+        public async Task<OrderSuspendViewModel> SuspendOrder(CheckoutInfoInput checkoutInfo)
         {
-            throw new NotImplementedException();
+            var basket = await _basketService.Get();
+
+            var orderCreateInput = new OrderCreateInput
+            {
+                CustomerId = _sharedIdentityService.GetUserId,
+                Address = new AddressCreateInput
+                {
+                    Province = checkoutInfo.Province,
+                    District = checkoutInfo.District,
+                    Line = checkoutInfo.Line,
+                    Street = checkoutInfo.Street,
+                    ZipCode = checkoutInfo.ZipCode
+                }
+            };
+
+            basket.BasketItems.ForEach(x =>
+            {
+                orderCreateInput.OrderItems.Add(new OrderItemCreateInput
+                {
+                    ProductId = x.CourseId,
+                    Price = x.CurrentPrice,
+                    ProductName = x.CourseName,
+                    PictureUrl = ""
+                });
+            });
+
+            var payment = new FakePaymentInfoInput
+            {
+                CardName = checkoutInfo.CardName,
+                CardNumber = checkoutInfo.CardNumber,
+                Expiration = checkoutInfo.Expiration,
+                CVV = checkoutInfo.CVV,
+                TotalPrice = basket.TotalPrice,
+                Order = orderCreateInput
+            };
+
+            var paymentResponse = await _fakePaymentService.ReceivePayment(payment);
+
+            if (!paymentResponse)
+            {
+                return new OrderSuspendViewModel { Error = "Payment could not be received!", IsSuccessful = false };
+            }
+
+            await _basketService.Delete();
+
+            return new OrderSuspendViewModel { IsSuccessful = true };
         }
     }
 }

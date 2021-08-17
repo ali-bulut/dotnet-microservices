@@ -11,7 +11,7 @@ namespace FreeCourse.Web.Services.Interfaces
         Task<OrderCreatedStatusViewModel> CreateOrder(CheckoutInfoInput checkoutInfo);
 
         // async => checkout info will be sent to queue.
-        Task SuspendOrder(CheckoutInfoInput checkoutInfo);
+        Task<OrderSuspendViewModel> SuspendOrder(CheckoutInfoInput checkoutInfo);
 
         Task<List<OrderViewModel>> GetOrder();
     }
