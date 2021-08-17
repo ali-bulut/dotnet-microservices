@@ -22,7 +22,7 @@ namespace FreeCourse.Services.FakePayment.Controllers
         }
 
        [HttpPost]
-       public async Task<IActionResult> ReceivePayment(FakePaymentInfoDto fakePaymentInfo)
+       public async Task<IActionResult> ReceivePayment([FromBody] FakePaymentInfoDto fakePaymentInfo)
        {
             var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("queue:create-order-service"));
             var createOrderMessageCommand = new CreateOrderMessageCommand
