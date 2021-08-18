@@ -105,3 +105,11 @@ services:
       - "5014:80"
     depends_on:
       - discountdb
+  fakepayment.api:
+    container_name: fakepayment.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+      - RabbitMQUrl:rabbitmq
+      - IdentityServerUrl:http://identityserver.api:5001
+    ports:
+      - "5016:80"
