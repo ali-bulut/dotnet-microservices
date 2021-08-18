@@ -95,3 +95,13 @@ services:
       - type: bind
         source: /Users/alibulut/Personal/Workspace/ASP.NETCore/MicroservicesProjectPhotos
         target: /app/wwwroot/photos
+  discount.api:
+    container_name: discount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+      - IdentityServerUrl:http://identityserver.api:5001
+      - "ConnectionStrings:PostgreSQL=User ID=admin; Password=admin; Server=discountdb; Port=5432; Database=discountdb;"
+    ports:
+      - "5014:80"
+    depends_on:
+      - discountdb
